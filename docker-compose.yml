@@ -7,7 +7,7 @@ services:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_DATABASE: "stock"
     healthcheck:
-      test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
       interval: 1s
       timeout: 1s
     restart: unless-stopped
@@ -21,4 +21,8 @@ services:
     volumes:
       - ./stock:/code/stock
     command: python ./manage.py runserver 0:8001
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/"]
+      interval: 10s
+      timeout: 1s
     restart: unless-stopped
