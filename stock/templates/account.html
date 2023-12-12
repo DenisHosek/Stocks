@@ -1,2 +1,17 @@
 {% extends "base.html" %}
-{% block content %} Jméno {% endblock %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <h1> {{ user.username }}</h1>
+        <h2>Change password</h2>
+        <form method="post" action=".">
+            <table>
+                {% csrf_token %}
+                {{ form.as_p }}
+            </table>>
+            <input type="submit" value="Change">
+        </form>
+        {% block change %}{% endblock %}
+    {% else %}
+        <h1>You do not have a permision.</h1>
+    {% endif %}
+{% endblock %}

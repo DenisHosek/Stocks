@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{% block title %}Titulní strana{% endblock %}</h1>
-    <p>Toto je titulní strana vašeho projektu.</p>
-    <p>Zde napíšete vlastní text dle potřeby.</p>
-
+    <h1>{% block title %}News{% endblock %}</h1>
+    {% for i in articles %}
+        <img src="{{ i.urlToImage }}" alt="article image" height="200px" width="200px">
+        <p>{{ i.title }}</p>
+        <p>{{ i.author }}</p>
+        <p>{{ i.descrption }}</p>
+        <a href="{{ i.url }}" target="_blank">Read more</a>
+        <small>published at: {{ i.publishedAt }}</small>
+    {% endfor %}
 {% endblock %}

@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["https://*.err.cz"]
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
 # Application definition
 
 INSTALLED_APPS = [
