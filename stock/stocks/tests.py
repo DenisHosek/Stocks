@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your tests here.
-class IndexPageTestCase(TestCase):
+class StockPageTestCase(TestCase):
     def test_displayIndex(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)

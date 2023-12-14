@@ -8,9 +8,10 @@
                 {% csrf_token %}
                 {{ form.as_p }}
             </table>>
-            <input type="submit" value="Change">
+            {% block change %}
+                <input type="submit" value="Change">
+            {% endblock %}
         </form>
-        {% block change %}{% endblock %}
     {% else %}
         <h1>You do not have a permision.</h1>
     {% endif %}

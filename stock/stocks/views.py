@@ -37,5 +37,5 @@ def singup(request):
 
     return render(request, "signup.html", {"form" : form})
 
-def pass_change(request):
-    return render(request, "pass_change.html")
+def change_pass(request):
+    return render(request, 'pass_change.html')
