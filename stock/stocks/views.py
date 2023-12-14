@@ -6,17 +6,17 @@ import requests
 
 
 def index(request):
-    url = 'https://newsapi.org/v2/top-headlines?category=business&apiKey=1ef0301a838743b2ba3585b9e71d8b10'
-    response = requests.get(url)
-    data = response.json()
+    #url = 'https://newsapi.org/v2/top-headlines?category=business&apiKey=1ef0301a838743b2ba3585b9e71d8b10'
+    #response = requests.get(url)
+    #data = response.json()
 
-    articles = data['articles']
+    #articles = data['articles']
 
-    context = {
-        'articles': articles
-    }
+    #context = {
+    #    'articles': articles
+    #}
 
-    return render(request, "index.html", context)
+    return render(request, "index.html")#, context)
 
 def stock(request):
 
@@ -37,3 +37,5 @@ def singup(request):
 
     return render(request, "signup.html", {"form" : form})
 
+def pass_change(request):
+    return render(request, "pass_change.html")

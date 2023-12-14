@@ -30,6 +30,7 @@ CSRF_TRUSTED_ORIGINS = ["https://*.err.cz"]
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
+#PASSWORDCHANGE_REDIRECT_URL = "change"
 # Application definition
 
 INSTALLED_APPS = [
