@@ -27,10 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["https://*.err.cz"]
-LOGOUT_REDIRECT_URL = 'home'
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
-#PASSWORDCHANGE_REDIRECT_URL = "change"
+LOGOUT_REDIRECT_URL = "home"
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "home"
+# PASSWORDCHANGE_REDIRECT_URL = "change"
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "stock.stocks",
 ]
 
