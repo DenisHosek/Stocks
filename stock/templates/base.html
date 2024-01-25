@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 {% block html %}
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
     <head>
     {% block head %}
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,7 +24,7 @@
           <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'stock'%}">Stock</a>
+          <a class="nav-link" href="#">Stock</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
@@ -35,6 +35,7 @@
               {% if request.user.is_staff %}
                   <a class="btn btn-outline-success" type="submit" href="{% url 'admin:index' %}">Administration</a>
               {% endif %}
+            <a class="btn btn-outline-success" type="submit" href="{% url 'add_stock' %}">Add Stock</a>
             <a class="btn btn-outline-success" type="submit" href="{% url 'account' %}">{{ user.username }}</a>
             <a class="btn btn-outline-success" type="submit" href="{% url 'logout' %}">Logout</a>
           {% else %}
@@ -46,6 +47,13 @@
   </div>
 </nav>
       <main>
+          {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
           {% block main %}
             {% block content %}{% endblock %}
           {% endblock %}

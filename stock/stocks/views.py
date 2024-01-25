@@ -3,25 +3,15 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 import yfinance
 import requests
+from .forms import StockForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .models import Stock
 
 
 def index(request):
-    # url = 'https://newsapi.org/v2/top-headlines?category=business&apiKey=1ef0301a838743b2ba3585b9e71d8b10'
-    # response = requests.get(url)
-    # data = response.json()
-
-    # articles = data['articles']
-
-    # context = {
-    #    'articles': articles
-    # }
-
-    return render(request, "index.html")  # , context)
-
-
-def stock(request):
-    return render(request, "stock.html")
-
+    ticker = Stock.objects.filter(user=request.user.id)
+    return render(request, "index.html", {'ticker': ticker})
 
 def singup(request):
     if request.method == "POST":
@@ -41,3 +31,17 @@ def singup(request):
 
 def change_pass(request):
     return render(request, "pass_change.html")
+
+@login_required
+def add_stock(request):
+    if request.method == ("POST"):
+        form = StockForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            messages.add_message(request, messages.INFO, "Stock ticker was add.")
+            return redirect('home')
+    else:
+        form = StockForm()
+    return render(request, 'add_stock.html', {'form':form})
