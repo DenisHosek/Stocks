@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-import yfinance
+import yfinance as yf
 import requests
 from .forms import StockForm
 from django.contrib.auth.decorators import login_required
@@ -13,6 +13,9 @@ def index(request):
     ticker = Stock.objects.filter(user=request.user.id)
     return render(request, "index.html", {'ticker': ticker})
 
+def stocks(request):
+    ticker = Stock.objects.filter(user=request.user.id)
+    return render(request, "stocks.html", {'ticker': ticker})
 def singup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -45,3 +48,13 @@ def add_stock(request):
     else:
         form = StockForm()
     return render(request, 'add_stock.html', {'form':form})
+
+@login_required
+def stock_info(request, stock_id):
+    stock = get_object_or_404(Stock, id = stock_id)
+    ticker = yf.Ticker(str(stock.ticker))
+    dividends = ticker.dividends.to_dict()
+    info = ticker.info
+    currency = info.get('currency')
+    web = info.get('website')
+    return render(request, 'stock.html', {'ticker':ticker, 'stock':stock, 'divid': dividends, 'currency':currency, 'web':web})

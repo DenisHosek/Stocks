@@ -1,13 +1,38 @@
-{% extends "base_vue.html" %}
+{% extends "base.html" %}
 
 {% block content %}
+     <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-4 fw-bold">Vítejte ve světě akcií</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Aplikace Stocks umožňuje rychlé a jednoduché informace o světě akcií, ceny, klesy, dividendy a další.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+        <button type="button" class="btn btn-success btn-lg px-4 me-sm-3">Primary button</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+      </div>
+    </div>
+    <div class="overflow-hidden" style="max-height: 30vh;">
+      <div class="container px-5">
+        <img src="bull.jpg" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+      </div>
+    </div>
+  </div>
     {% if request.user.is_authenticated %}
         <h1>{% block title %}Stocks{% endblock %}</h1>
         <ul>
-            {% for ticker in ticker %}
-                <li>{{ ticker }}</li>
+            {% for t in ticker %}
+                <a class="btn btn-outline-success" type="submit" href="{% url 'stock' t.id %}"><li>{{ t }}</li></a>
             {% endfor %}
         </ul>
+        <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
     {% else %}
     {% endif %}
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+    <div class="container">
+        <h1>{% block title %}Stocks{% endblock %}</h1>
+        <ul>
+            {% for t in ticker %}
+                <a class="btn btn-outline-success" type="submit" href="{% url 'stock' t.id %}"><li>{{ t }}</li></a>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    {% endif %}
+{% endblock %}
