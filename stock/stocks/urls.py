@@ -12,5 +12,6 @@ urlpatterns = [
     path("login/", vie.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('stock/add/', views.add_stock, name="add_stock"),
     path('stock/list/', views.stocks, name="stock_list"),
+    path('stock/list/refresh/', views.stocks, name="refresh"),
     path('stock/<int:stock_id>/', views.stock_info, name='stock')
     ]

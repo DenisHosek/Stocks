@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+<br>
+<div class="container">
     <h1>{% block title %}Log in{% endblock %}</h1>
 
     <form method="post" action=".">
@@ -10,5 +12,6 @@
         </table>
         <button>Log in</button>
     </form>
+</div>
 
 {% endblock %}

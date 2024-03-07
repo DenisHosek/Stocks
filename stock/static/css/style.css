@@ -3,3 +3,8 @@ body {
     max-width: 1000px;
     margin: 0 auto;
 }
+.dropdown-menu {
+    max-height: 280px;
+    overflow-y: auto;
+}
+

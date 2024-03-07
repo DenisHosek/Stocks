@@ -1,6 +1,7 @@
 django-ninja
 coverage~=7.3.2
 django~=4.2.7
+django-crispy-forms
 django-extensions~=3.2.3
 mysqlclient~=2.2.0
 requests

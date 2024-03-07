@@ -26,13 +26,3 @@ services:
       interval: 10s
       timeout: 1s
     restart: unless-stopped
-  frontend:
-    build: frontend
-    depends_on:
-      django:
-        condition: service_healthy
-    volumes:
-      - ./stock:/stock
-      - ./frontend:/code
-    command: npm run serve
-    restart: unless-stopped

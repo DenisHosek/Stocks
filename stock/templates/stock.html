@@ -1,43 +1,75 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <br>
 <div class="container">
-    <h1>{{ stock }}</h1>
-    {{ web }}
-    {{ currency }}
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Dropdown button
-        </button>
-        <ul class="dropdown-menu">
-            {% for d, v in divid.items %}
-                <li><a class="dropdown-item" href="#">{{ d }} </a></li>
-            {% endfor %}
-        </ul>
-    </div>
+    <h1>{{ all.longName }}</h1>
+    <h6>Currency: <b>{{ currency }}</b></h6>
+    <button type="button" class="btn btn-success" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="{{ all.longBusinessSummary }}">
+    Information about {{ all.longName }}
+    </button>
+    <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dividend history
+    </button>
+    <ul class="dropdown-menu">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">
+                        Dividend
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d, v in divid.items %}
+                    <tr>
+                        <td>
+                            {{ d }}
+                        </td>
+                        <td>{{ v }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </ul>
+    <a class="btn btn-outline-success" type="submit" href="{{ web }}">
+        <i class="bi bi-globe"></i>
+        Web</a>
+    {{ data }}
+
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Price</th>
+      <th scope="col">
+          P/E
+          <a href="#" data-bs-toggle="popover" title="P/E Ratio" data-bs-content="Price to Earnings (P/E) ratio provides a measure of the market's valuation of a stock compared to its earnings. A higher P/E ratio means investors are paying more for each unit of net income, indicating potential overvaluation or expectations of high growth rates in the future." data-bs-trigger="hover focus">
+            <i class="bi bi-info-circle"></i>
+          </a>
+      </th>
+      <th scope="col">
+          P/B
+          <a href="#" data-bs-toggle="popover" title="P/B Ratio" data-bs-content="Price to Book (P/B) ratio compares a company's market value to its book value, indicating how much shareholders are paying for the net assets of a company. A lower P/B ratio could mean the stock is undervalued." data-bs-trigger="hover focus">
+            <i class="bi bi-info-circle"></i>
+          </a>
+      </th>
+      <th scope="col">
+          P/S
+          <a href="#" data-bs-toggle="popover" title="P/S Ratio" data-bs-content="Price to Sales (P/S) ratio compares a company's stock price to its revenues, providing a measure of value relative to the company's sales. A lower P/S ratio might suggest the stock is an attractive investment compared to its sales." data-bs-trigger="hover focus">
+          <i class="bi bi-info-circle"></i>
+          </a>
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th>{{ all.currentPrice }}</th>
+      <td>{{ pe }}</td>
+      <td>{{ all.priceToBook }}</td>
+      <td>{{ all.priceToSalesTrailing12Months }}</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-
 
 </div>
+
 {% endblock %}
